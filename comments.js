@@ -1,11 +1,9 @@
-// create web server
+// Create web service
 var express = require('express');
-var app = express();
-// create a route
-app.get('/comments', function(req, res) {
-  res.send('This is a comment page');
-});
-// start the server
-app.listen(3000, function() {
-  console.log('Server is running on http://localhost:3000');
-});
+var router = express.Router();
+var Comments = require('../models/comments');
+var User = require('../models/user');
+
+// Create a new comment
+router.post('/new', function(req, res) {
+  var comment = new Comments({
